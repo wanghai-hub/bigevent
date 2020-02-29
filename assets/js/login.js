@@ -15,10 +15,10 @@ $('#tologin').on('click',function(){
  var layer=layui.layer;
 
 form.verify({
-  psd:[],
+  psd:/^[\S]{6,12}$/
+  ,'密码必须6到12位，且不能出现空格',
   same:function(value){
     if(value !==$().val()){
-
     }
   }
 })
@@ -51,7 +51,7 @@ $('#form-login').on('submit',function(e){
     $.ajax({
       type:'post',
       url:'http://www.liulongbin.top:3007/api/login',
-      data:$(this).serialize();
+      data:$(this).serialize(),
       success:function(res){
         if(res.status !==0){
           return layer.msg('shibai')
