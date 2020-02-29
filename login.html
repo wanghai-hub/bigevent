@@ -21,17 +21,19 @@
                     <i class="layui-icon layui-icon-face-smile"></i> 
                     <input type="text" name="username" required  lay-verify="required" placeholder="请输入用户名" autocomplete="off" class="layui-input ">
                 </div>
+
                 <div class="layui-form-item">
                     <i class="layui-icon layui-icon-face-smile"></i> 
                     <input type="password" name="password" required  lay-verify="required|psd" placeholder="请输入密码" autocomplete="off" class="re layui-input">
                 </div>
+
                 <div class="layui-form-item">
                     <i class="layui-icon layui-icon-face-smile"></i> 
-                    <input type="password" name="repassword" required  lay-verify="required|same" placeholder="请确认密码" autocomplete="off" class="layui-input">
+                    <input type="password" name="repassword" required  lay-verify="required|same|psd" placeholder="请确认密码" autocomplete="off" class="layui-input">
                 </div>
                 <!-- //  按钮 -->
                 <div class="layui-form-item">              
-                      <button type="reset" class="layui-btn  layui-btn-fluid layui-btn-normal">注册</button>                
+                    <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>               
                 </div>
                 <div class="layui-form-item">
                     <a href="javascript:;" id="toreg">去登陆</a>
@@ -52,7 +54,7 @@
                 </div>
                 <!-- 按钮 -->
                 <div class="layui-form-item">
-                      <button type="reset" class="layui-btn layui-btn-fluid layui-btn-normal">注册</button>                  
+                    <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>                  
                 </div>
                 <div class="layui-form-item">
                     <a href="javascript:;" id="tologin">去注册</a>

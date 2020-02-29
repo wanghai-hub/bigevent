@@ -14,57 +14,77 @@ $('#tologin').on('click',function(){
  var form =layui.form;
  var layer=layui.layer;
 
-form.verify({
-  psd:[],
-  same:function(value){
-    if(value !==$().val()){
+// 输入码验证
 
+form.verify({
+  psd: [
+    /^[\S]{6,12}$/
+    ,'密码必须6到12位，且不能出现空格'
+  ] ,
+  same:function(value){
+    if(value !==$('.re').val()){
+      return '两次的密码不一致';
     }
   }
 })
 
-
-$('#form-reg').on('submit',function(e){
-  e.preventdefault();
+// 注册盒子提交
+$('#form-login').on('submit',function(e){
+  e.preventDefault();
+// 发送请求
   $.ajax({
-    type:'post',
     url:'http://www.liulongbin.top:3007/api/reguser',
+    type:'post',
     data:$(this).serialize(),
     success:function(res){
-      if(res.status !== 0){
-        // return console.log(res.message);
-        return layer.msg(res.message)
-      }
-      //传送成功
-      layer.msg('注册成功')
-      //模拟点击
-      $('#toreg').click()
+        if(res.status !== 0){
+          return layer.msg(res.message);
+          
+        }
+        // 请求成功
+        layer.msg(res.message)
+       $('#toreg').click()
+        
     }
   })
 
+
 })
 
-//登陆表单提交事件
-$('#form-login').on('submit',function(e){
-  e.preventdefault();
 
-    $.ajax({
-      type:'post',
-      url:'http://www.liulongbin.top:3007/api/login',
-      data:$(this).serialize();
-      success:function(res){
-        if(res.status !==0){
-          return layer.msg('shibai')
-        }
-        // 登陆成功并跳转到后台首页
-        localStorage.setItem('token',res.token)
-        window.location.href='/index.html'
-
+//登陆盒子提交
+$('#form-reg').on('submit',function(e){
+  e.preventDefault();
+  $.ajax({
+    type:'post',
+    url:'http://www.liulongbin.top:3007/api/login',
+    data:$(this).serialize(),
+    success:function(res){
+      if(res.status !==0){
+        return layer.msg(res.message)
       }
+      // 成功
 
-    })  
+      layer.msg(res.message)
+      localStorage.setItem('token',res.token)
+      // 跳转到后台首页
+      window.location.href='/index.html'
+
+    }
+
+
+
+  })
+
+
 
 })
+
+
+
+
+
+
 
 
 
