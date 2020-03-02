@@ -12,7 +12,7 @@ $.ajaxPrefilter(function(option){
 
     // 统一为有权限的接口，设置complete回调函数
     option.complete=function(res){
-        if(res.responseJson.status ==1 && res.responseJson.message =='身份验证失败'){
+        if(res.responseJSON.status ==1 && res.responseJSON.message =='身份验证失败'){
             //说明没有经过登陆
             localStorage.removeItem('token');
             location.href='/login.html'
